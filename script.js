@@ -51,7 +51,42 @@ const flattenObject = (obj, prefix = '') =>
    }, {});
 console.log(flattenObject({ a: { b: { c: 1 } }, d: 1 }));
 { 'a.b.c': 1, d: 1 }
-console.log(flattenObject(obj))
-{ 'address.city': 'mabank',
-  'address.street.name': 'McAnally Dr',
-  'address.street.number.house': 125 }
+// console.log(flattenObject(obj))
+// { 'address.city': 'mabank',
+//   'address.street.name': 'McAnally Dr',
+//   'address.street.number.house': 125 }
+
+const myObj = {
+  name: 'John',
+  children: [
+    {
+      name: 'Jim',
+      children:[]
+    },
+    {
+      name: 'Zoe',
+      children: [
+        { name: 'Mary', children: []},
+        { name: 'Chad', children:[]}
+      ]
+    }
+  ]
+}
+
+function printChildrenRecursive(obj) {
+  if(obj.children.length === 0) return;
+  obj.children.forEach( child=> {
+           console.log(child.name)
+           printChildrenRecursive(child)
+  })
+}
+
+// console.log(printChildrenRecursive(myObj))
+// Jim
+// Zoe
+// Mary
+// Chad
+// undefined
+
+
+
